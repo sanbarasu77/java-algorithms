@@ -3,6 +3,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
 
+//this class defines the stucture of a binary tree node.
+//Each node references to its left and right children.
+//Each node has a value ('val')
 class TreeNode {
     int val;
     TreeNode left, right;
@@ -11,6 +14,9 @@ class TreeNode {
     }
 }
 
+//this class contain the method to find the right side view
+//this method takes root of the binary tree as an argument and initalizes an empty list 'result' to sore the right side view.
+//A queue is implemneted as a linked-list, the root of the binary tree is enqueued (added) to the queue
 public class BinaryTreeRightSideView {
 
     public List<Integer> rightSideView(TreeNode root) {
@@ -19,8 +25,8 @@ public class BinaryTreeRightSideView {
             return result;
         }
 
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
+        Queue<TreeNode> queue = new LinkedList<>();     //create a quque
+        queue.offer(root);                               // add the binary tree root node to the quque
 
         while (!queue.isEmpty()) {
             int size = queue.size();
@@ -30,15 +36,15 @@ public class BinaryTreeRightSideView {
 
                 // For each level, only add the rightmost node to the result
                 if (i == size - 1) {
-                    result.add(current.val);
-                }
+                    result.add(current.val);         //this is the right most node in the currrent tree level
+                }                                    //therefore, add the node value to the result list
 
                 if (current.left != null) {
-                    queue.offer(current.left);
+                    queue.offer(current.left);        //add the next left child node to the queue
                 }
 
                 if (current.right != null) {
-                    queue.offer(current.right);
+                    queue.offer(current.right);        //add the next right child node to the queue
                 }
             }
         }
